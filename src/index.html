@@ -14,27 +14,13 @@
 
 <!--v-bind:class="red"-->
 <!--:class="red"-->
-<style>
-    .red {
-        background: red;
-    }
-    .blue {
-        background: blue;
-    }
-</style>
 
-
-<div class="container" style="display: flex; flex-direction: column;height: 200vh; justify-content: center; align-items: center;">
-    <div class="row">
-        <div class="col-md-12">
-        <div id="header">
-            <div  :class="title" v-on:mouseenter="headerHover" v-on:mouseleave="headerLeaver">
-                <h1 class="menu">
-                    {{title}}
-                </h1>
-            </div>
-        </div>
-
+<div class="container pt-5" id="app">
+    <div class="card">
+        <h1>{{title}}: {{counter}}</h1>
+        <div>
+            <button class="btn primary" v-on:click="counter++">+</button>
+            <button class="btn danger" v-on:click="counter = counter - 1">-</button>
         </div>
     </div>
 </div>
