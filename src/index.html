@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main page</title>
+    <link rel="icon" href="assets/img/favicon.ico" type="image/icon">
+</head>
+<body>
+<!--v-on:mouseenter="headerHover"-->
+<!--@:mouseenter="headerHover"-->
+
+<!--v-bind:class="red"-->
+<!--:class="red"-->
+<style>
+    .red {
+        background: red;
+    }
+    .blue {
+        background: blue;
+    }
+</style>
+
+
+<div class="container" style="display: flex; flex-direction: column;height: 200vh; justify-content: center; align-items: center;">
+    <div class="row">
+        <div class="col-md-12">
+        <div id="header">
+            <div  :class="title" v-on:mouseenter="headerHover" v-on:mouseleave="headerLeaver">
+                <h1 class="menu">
+                    {{title}}
+                </h1>
+            </div>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
