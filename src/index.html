@@ -8,6 +8,11 @@
     <title>Main page</title>
     <link rel="icon" href="assets/img/favicon.ico" type="image/icon">
 </head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
 <body>
 <!--v-on:mouseenter="headerHover"-->
 <!--@:mouseenter="headerHover"-->
@@ -15,7 +20,7 @@
 <!--v-bind:class="red"-->
 <!--:class="red"-->
 
-<div class="container" id="app">
+<div class="container" id="app" v-cloak>
     <div class="card">
         <h1 :style="{color: inputValue.length < 5 ? 'darkred': 'darkblue', fontSize: inputValue.length < 5 ? '15px': '25px'}">
             {{title}}</h1>
@@ -24,6 +29,7 @@
                    :placeholder="placeholderString"
                    @keypress.enter="addNewNote"
                    v-model="inputValue"
+                   @keyup="consoleLog" ref="myInput"
             >
         </div>
 
@@ -34,8 +40,8 @@
                 <!--<span :class="note.length < 5 ? 'primary' : 'bold'">( {{index}} ) {{ toUpperCase(note) }}</span>-->
 
                 <!--<span :class="{-->
-                    <!--'primary': true,-->
-                    <!--'bold': note.length > 5-->
+                <!--'primary': true,-->
+                <!--'bold': note.length > 5-->
                 <!--}">( {{index}} ) {{ toUpperCase(note) }}</span>-->
 
                 <span :class="['bold', {'primary': note.length > 5}]">( {{index}} ) {{ toUpperCase(note) }}</span>
@@ -51,6 +57,39 @@
 
     </div>
 </div>
+
+<br>
+<br>
+<br>
+
+
+<div class="container" id="app2" v-cloak>
+    <div class="card">
+        <h1>План по изучению Vue.js</h1>
+
+        <div class="steps">
+            <div class="steps-content">
+                {{activeStep['text']}}
+            </div>
+            <ul class="steps-list">
+                <li :class="{
+                    'active': i == activeIndex,
+                    'done': activeIndex > i
+                }" class="steps-item" @click="setActive(i)" v-for="(step, i) in steps"><span>{{i+1}}</span>
+                    {{step['title']}}
+                </li>
+            </ul>
+            <div v-if="thisFinish">
+                <button class="btn primary"  @click="reset">Начать заного</button>
+            </div>
+            <div v-else>
+                <button class="btn" @click="prev" :disabled="prevDisabled">Назад</button>
+                <button class="btn primary" @click="nextOfFinish">{{isLastStep ? 'Закончить' : 'Вперед'}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 </body>
 </html>
