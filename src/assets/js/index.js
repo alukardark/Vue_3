@@ -11,9 +11,11 @@ window.$ = window.jQuery = require('jquery');
 
 
 
-const Vue = require("vue");
+// const Vue = require("vue");
+window.Vue = require("vue");
+import { createApp } from 'vue'
 
-const App = {
+const App1 = {
     // template: `<h1>xxx</h1>`,
     data() {
         return {
@@ -54,9 +56,7 @@ const App = {
         }
     },
 };
-
-Vue.createApp(App).mount('#app');
-
+Vue.createApp(App1).mount('#app1');
 
 const App2 = {
     data() {
@@ -121,5 +121,17 @@ const App2 = {
         }
     }
 };
-
 Vue.createApp(App2).mount('#app2');
+
+
+
+
+
+import App from '../../App.vue';
+import TheHeader from '../../components/TheHeader.vue';
+
+const app = createApp(App);
+
+app.component('the-header', TheHeader);
+
+app.mount('#app');

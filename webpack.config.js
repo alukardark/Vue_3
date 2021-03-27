@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require("vue-loader");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
@@ -14,7 +14,7 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = !isDevelopment;
 
-const htmlWebpackTemplates = ['index'];
+const htmlWebpackTemplates = ['index','index2'];
 
 let htmlWebpackPlugins = htmlWebpackTemplates.map(name => {
     return new HtmlWebpackPlugin({
@@ -89,6 +89,7 @@ module.exports = {
     },
     devtool: isDevelopment ? 'source-map' : '',
     plugins: [
+        new VueLoaderPlugin(),
         new ScriptExtHtmlWebpackPlugin({
             defaultAttribute: 'defer'
         }),
